@@ -9,6 +9,10 @@ body {
   background-color: #000;
   color: #f0f0f0;
   overflow-x: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 canvas#bgCanvas {
@@ -40,6 +44,7 @@ header h1 {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  transform: translate(-5%, 0);
 }
 
 .games-grid {
@@ -50,6 +55,10 @@ header h1 {
   z-index: 1;
   gap: 30px;
   flex-wrap: wrap;
+}
+
+.kiwi-logo {
+  transform: translate(0, -8%);
 }
 
 .game-card {
