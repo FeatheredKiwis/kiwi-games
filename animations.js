@@ -1,5 +1,5 @@
-const canvas = document.getElementById('bgCanvas');
-const ctx = canvas.getContext('2d');
+const canvas = document.getElementById("bgCanvas");
+const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -23,7 +23,7 @@ for (let i = 0; i < numStars; i++) {
     radius: Math.random() * 0.5 + 0.5,
     size: Math.random() * 1.5 + 0.5,
     baseSpeedX: Math.random() * 0.05 - 0.025,
-    baseSpeedY: Math.random() * 0.05 - 0.025
+    baseSpeedY: Math.random() * 0.05 - 0.025,
   });
 }
 
@@ -37,7 +37,7 @@ function createShootingStar() {
     vx: Math.cos(angle) * 10,
     vy: Math.sin(angle) * 10,
     length: Math.random() * 100 + 50,
-    opacity: 1
+    opacity: 1,
   });
 }
 
@@ -46,7 +46,7 @@ function createTwinkle() {
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     size: Math.random() * 2 + 1,
-    life: 1.0
+    life: 1.0,
   });
 }
 
@@ -58,7 +58,7 @@ setInterval(() => {
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  stars.forEach(s => {
+  stars.forEach((s) => {
     const dx = (mouseX - canvas.width / 2) * 0.001;
     const dy = (mouseY - canvas.height / 2) * 0.001;
     const toOriginX = (s.originX - s.x) * 0.0025;
@@ -71,7 +71,7 @@ function animate() {
     s.x += s.baseSpeedX + dx + toOriginX + circularX;
     s.y += s.baseSpeedY + dy + toOriginY + circularY;
 
-    ctx.fillStyle = '#ffffff';
+    ctx.fillStyle = "#ffffff";
     ctx.beginPath();
     ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
     ctx.fill();
@@ -94,14 +94,21 @@ function animate() {
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(s.x, s.y);
-    ctx.lineTo(s.x - Math.cos(25 * Math.PI / 180) * s.length, s.y - Math.sin(25 * Math.PI / 180) * s.length);
+    ctx.lineTo(
+      s.x - Math.cos((25 * Math.PI) / 180) * s.length,
+      s.y - Math.sin((25 * Math.PI) / 180) * s.length
+    );
     ctx.stroke();
 
     s.x += s.vx;
     s.y += s.vy;
     s.opacity -= 0.005;
 
-    if (s.opacity <= 0 || s.x > canvas.width + 100 || s.y > canvas.height + 100) {
+    if (
+      s.opacity <= 0 ||
+      s.x > canvas.width + 100 ||
+      s.y > canvas.height + 100
+    ) {
       shootingStars.splice(i, 1);
     }
   });
@@ -111,12 +118,12 @@ function animate() {
 
 animate();
 
-window.addEventListener('resize', () => {
+window.addEventListener("resize", () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
 
-document.addEventListener('mousemove', e => {
+document.addEventListener("mousemove", (e) => {
   mouseX = e.clientX;
   mouseY = e.clientY;
 });
