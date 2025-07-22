@@ -120,16 +120,36 @@ header h1 {
 .discord-link {
   margin-left: auto;
   display: block;
+  position: relative;
+  transition: transform 0.2s ease-in-out;
+}
+
+.discord-link:hover {
+  transform: scale(1.1);
 }
 
 .discord-logo {
   height: 36px;
-  transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+  display: block;
 }
 
-.discord-link:hover .discord-logo {
-  transform: scale(1.1);
+.discord-link::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(assets/discord.webp);
+  background-size: 100%;
+  background-repeat: no-repeat;
   filter: invert(56%) sepia(87%) saturate(1291%) hue-rotate(194deg) brightness(91%) contrast(85%);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.discord-link:hover::after {
+  opacity: 1;
 }
 
 .game-card.coming-soon .game-link {
@@ -156,4 +176,3 @@ header h1 {
   font-weight: bold;
   text-shadow: 1px 1px 3px black;
 }
-
