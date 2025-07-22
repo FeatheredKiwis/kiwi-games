@@ -87,6 +87,10 @@ header h1 {
   background-image: url('https://tr.rbxcdn.com/180DAY-0a1e859b0984859a7a408ea695c8955f/768/432/Image/Webp/noFilter');
 }
 
+.game-card-dr {
+  background-image: url('https://tr.rbxcdn.com/180DAY-da525289338642275e4838a07d685e93/768/432/Image/Webp/noFilter');
+}
+
 .modded-text {
   position: absolute;
   width: 120%;
@@ -120,9 +124,35 @@ header h1 {
 
 .discord-logo {
   height: 36px;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
 }
 
 .discord-link:hover .discord-logo {
   transform: scale(1.1);
+  filter: invert(56%) sepia(87%) saturate(1291%) hue-rotate(194deg) brightness(91%) contrast(85%);
+}
+
+.game-card.coming-soon .game-link {
+  cursor: not-allowed;
+}
+
+.game-card.coming-soon:hover {
+  transform: none;
+}
+
+.coming-soon-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 3;
+}
+
+.coming-soon-overlay span {
+  color: white;
+  font-size: 1.75rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px black;
 }
