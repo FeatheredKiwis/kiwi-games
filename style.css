@@ -36,7 +36,7 @@ header img {
 
 header h1 {
   font-size: 2rem;
-  background-image: linear-gradient(to bottom, #FFFFFF, #98FB98);
+  background-image: linear-gradient(to bottom, #ffffff, #98fb98);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -53,7 +53,16 @@ header h1 {
 }
 
 .game-card {
-  background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+  background: linear-gradient(
+    45deg,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet
+  );
   padding: 4px;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
@@ -80,15 +89,15 @@ header h1 {
 }
 
 .game-card-sap {
-  background-image: url('https://tr.rbxcdn.com/180DAY-74f37e645fbba4a51207ee3bef48fdea/768/432/Image/Webp/noFilter');
+  background-image: url("https://tr.rbxcdn.com/180DAY-74f37e645fbba4a51207ee3bef48fdea/768/432/Image/Webp/noFilter");
 }
 
 .game-card-ps99 {
-  background-image: url('https://tr.rbxcdn.com/180DAY-0a1e859b0984859a7a408ea695c8955f/768/432/Image/Webp/noFilter');
+  background-image: url("https://tr.rbxcdn.com/180DAY-0a1e859b0984859a7a408ea695c8955f/768/432/Image/Webp/noFilter");
 }
 
 .game-card-dr {
-  background-image: url('https://tr.rbxcdn.com/180DAY-da525289338642275e4838a07d685e93/768/432/Image/Webp/noFilter');
+  background-image: url("https://tr.rbxcdn.com/180DAY-da525289338642275e4838a07d685e93/768/432/Image/Webp/noFilter");
 }
 
 .modded-text {
@@ -134,7 +143,7 @@ header h1 {
 }
 
 .discord-link::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -143,7 +152,8 @@ header h1 {
   background-image: url(assets/discord.webp);
   background-size: 100%;
   background-repeat: no-repeat;
-  filter: invert(56%) sepia(87%) saturate(1291%) hue-rotate(194deg) brightness(91%) contrast(85%);
+  filter: invert(56%) sepia(87%) saturate(1291%) hue-rotate(194deg)
+    brightness(91%) contrast(85%);
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
 }
