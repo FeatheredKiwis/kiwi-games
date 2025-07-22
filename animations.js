@@ -1,36 +1,47 @@
 const canvas = document.getElementById("bgCanvas");
 const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
 
-const stars = [];
-const shootingStars = [];
-const twinkles = [];
+let stars = [];
+let shootingStars = [];
+let twinkles = [];
+
 const numStars = 200;
-let mouseX = canvas.width / 2;
-let mouseY = canvas.height / 2;
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
 
-for (let i = 0; i < numStars; i++) {
-  const originX = Math.random() * canvas.width * 2 - canvas.width * 0.5;
-  const originY = Math.random() * canvas.height * 2 - canvas.height * 0.5;
-  const angle = Math.random() * Math.PI * 2;
-  stars.push({
-    x: originX,
-    y: originY,
-    originX,
-    originY,
-    angle,
-    radius: Math.random() * 0.5 + 0.5,
-    size: Math.random() * 1.5 + 0.5,
-    baseSpeedX: Math.random() * 0.05 - 0.025,
-    baseSpeedY: Math.random() * 0.05 - 0.025,
-  });
+function init() {
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = window.innerWidth * dpr;
+  canvas.height = window.innerHeight * dpr;
+  canvas.style.width = `${window.innerWidth}px`;
+  canvas.style.height = `${window.innerHeight}px`;
+  ctx.scale(dpr, dpr);
+
+  stars = [];
+  for (let i = 0; i < numStars; i++) {
+    const originX =
+      Math.random() * window.innerWidth * 2 - window.innerWidth * 0.5;
+    const originY =
+      Math.random() * window.innerHeight * 2 - window.innerHeight * 0.5;
+    const angle = Math.random() * Math.PI * 2;
+    stars.push({
+      x: originX,
+      y: originY,
+      originX,
+      originY,
+      angle,
+      radius: Math.random() * 0.5 + 0.5,
+      size: Math.random() * 1.5 + 0.5,
+      baseSpeedX: Math.random() * 0.05 - 0.025,
+      baseSpeedY: Math.random() * 0.05 - 0.025,
+    });
+  }
 }
 
 function createShootingStar() {
   const angle = 25 * (Math.PI / 180);
   const startX = -100;
-  const startY = Math.random() * canvas.height * 0.5;
+  const startY = Math.random() * window.innerHeight * 0.5;
   shootingStars.push({
     x: startX,
     y: startY,
@@ -43,8 +54,8 @@ function createShootingStar() {
 
 function createTwinkle() {
   twinkles.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
     size: Math.random() * 2 + 1,
     life: 1.0,
   });
@@ -56,11 +67,11 @@ setInterval(() => {
 }, 1000);
 
 function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
   stars.forEach((s) => {
-    const dx = (mouseX - canvas.width / 2) * 0.001;
-    const dy = (mouseY - canvas.height / 2) * 0.001;
+    const dx = (mouseX - window.innerWidth / 2) * 0.001;
+    const dy = (mouseY - window.innerHeight / 2) * 0.001;
     const toOriginX = (s.originX - s.x) * 0.0025;
     const toOriginY = (s.originY - s.y) * 0.0025;
 
@@ -106,8 +117,8 @@ function animate() {
 
     if (
       s.opacity <= 0 ||
-      s.x > canvas.width + 100 ||
-      s.y > canvas.height + 100
+      s.x > window.innerWidth + 100 ||
+      s.y > window.innerHeight + 100
     ) {
       shootingStars.splice(i, 1);
     }
@@ -116,14 +127,14 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
-animate();
-
-window.addEventListener("resize", () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
+window.addEventListener("resize", init);
 
 document.addEventListener("mousemove", (e) => {
   mouseX = e.clientX;
   mouseY = e.clientY;
 });
+
+document.addEventListener("contextmenu", (event) => event.preventDefault());
+
+init();
+animate();
