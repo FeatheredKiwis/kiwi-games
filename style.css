@@ -1,0 +1,114 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #000;
+  color: #f0f0f0;
+  overflow-x: hidden;
+}
+
+canvas#bgCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+header {
+  background-color: transparent;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+header img {
+  height: 50px;
+}
+
+header h1 {
+  font-size: 2rem;
+  background-image: linear-gradient(to bottom, #FFFFFF, #98FB98);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.games-grid {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  position: relative;
+  z-index: 1;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.game-card {
+  background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+  padding: 4px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s;
+  width: 300px;
+  height: 300px;
+  position: relative;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+}
+
+.game-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  background-size: cover;
+  background-position: center;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-card-sap {
+  background-image: url('https://tr.rbxcdn.com/180DAY-74f37e645fbba4a51207ee3bef48fdea/768/432/Image/Webp/noFilter');
+}
+
+.game-card-ps99 {
+  background-image: url('https://tr.rbxcdn.com/180DAY-0a1e859b0984859a7a408ea695c8955f/768/432/Image/Webp/noFilter');
+}
+
+.modded-text {
+  position: absolute;
+  width: 120%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.game-card .content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  text-align: center;
+  z-index: 2;
+}
+
+.game-card h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 1rem;
+}
