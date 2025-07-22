@@ -112,3 +112,17 @@ header h1 {
   color: #fff;
   font-size: 1rem;
 }
+
+.discord-link {
+  margin-left: auto;
+  display: block;
+}
+
+.discord-logo {
+  height: 36px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.discord-link:hover .discord-logo {
+  transform: scale(1.1);
+}
