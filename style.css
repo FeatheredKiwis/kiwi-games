@@ -109,6 +109,14 @@ header h1 {
   background-image: url("https://tr.rbxcdn.com/180DAY-da525289338642275e4838a07d685e93/768/432/Image/Webp/noFilter");
 }
 
+.game-card-full-ps99 {
+  background-image: url("https://tr.rbxcdn.com/180DAY-48bacfc866693b25635c2cda843ea11b/768/432/Image/Webp/noFilter");
+}
+
+.game-card-sab {
+  background-image: url("https://tr.rbxcdn.com/180DAY-0a1cbd9f3000421ffcb5541f5c2f5fac/768/432/Image/Webp/noFilter");
+}
+
 .modded-text {
   position: absolute;
   width: 120%;
