@@ -40,7 +40,7 @@ header img {
 
 header h1 {
   font-size: 2rem;
-  background-image: linear-gradient(to bottom, #ffffff, #98fb98);
+  background-image: linear-gradient(to bottom, #98fb98, #008033);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -143,8 +143,14 @@ header h1 {
   font-size: 1rem;
 }
 
-.discord-link {
+.social-links {
   margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.discord-link {
   display: block;
   position: relative;
   transition: transform 0.2s ease-in-out;
@@ -179,6 +185,41 @@ header h1 {
   opacity: 1;
 }
 
+.youtube-link {
+  display: block;
+  position: relative;
+  transition: transform 0.2s ease-in-out;
+}
+
+.youtube-link:hover {
+  transform: scale(1.1);
+}
+
+.youtube-logo {
+  height: 36px;
+  display: block;
+}
+
+.youtube-link::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(assets/youtube.webp);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  filter: invert(24%) sepia(94%) saturate(11000%) hue-rotate(1deg)
+    brightness(95%) contrast(120%);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.youtube-link:hover::after {
+  opacity: 1;
+}
+
 .game-card.coming-soon .game-link {
   cursor: not-allowed;
 }
@@ -198,6 +239,40 @@ header h1 {
 }
 
 .coming-soon-overlay span {
+  color: white;
+  font-size: 1.75rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px black;
+}
+
+.coming-soon-overlay-2 {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 3;
+}
+
+.coming-soon-overlay-2 span {
+  color: white;
+  font-size: 1.75rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px black;
+}
+
+.coming-soon-overlay-3 {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 3;
+}
+
+.coming-soon-overlay-3 span {
   color: white;
   font-size: 1.75rem;
   font-weight: bold;
