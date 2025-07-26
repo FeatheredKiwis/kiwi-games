@@ -114,7 +114,7 @@ header h1 {
 }
 
 .game-card-sab {
-  background-image: url("https://tr.rbxcdn.com/180DAY-0a1cbd9f3000421ffcb5541f5c2f5fac/768/432/Image/Webp/noFilter");
+  background-image: url("https://tr.rbxcdn.com/180DAY-c020349c01933ac543e8acd349f932d0/768/432/Image/Webp/noFilter");
 }
 
 .modded-text {
@@ -147,7 +147,7 @@ header h1 {
   margin-left: auto;
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 5px;
 }
 
 .discord-link {
