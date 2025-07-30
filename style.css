@@ -61,9 +61,24 @@ header h1 {
   transform: translate(0, -8%);
 }
 
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotate-gradient {
+  0% {
+    --gradient-angle: 0deg;
+  }
+  100% {
+    --gradient-angle: 360deg;
+  }
+}
+
 .game-card {
   background: linear-gradient(
-    45deg,
+    var(--gradient-angle),
     red,
     orange,
     yellow,
@@ -72,6 +87,7 @@ header h1 {
     indigo,
     violet
   );
+  animation: rotate-gradient 15s linear infinite;
   padding: 4px;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
@@ -131,8 +147,8 @@ header h1 {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 12px;
   text-align: center;
   z-index: 2;
 }
@@ -141,6 +157,32 @@ header h1 {
   margin: 0;
   color: #fff;
   font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+}
+
+.stat-icon {
+  height: 16px;
+  width: 16px;
+  filter: brightness(0) invert(1);
+}
+
+.stat-item span {
+  font-weight: bold;
 }
 
 .social-links {
@@ -148,6 +190,40 @@ header h1 {
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+.roblox-link {
+  display: block;
+  position: relative;
+  transition: transform 0.2s ease-in-out;
+}
+
+.roblox-link:hover {
+  transform: scale(1.1);
+}
+
+.roblox-link::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(assets/roblox.webp);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  filter: hue-rotate(220deg) saturate(300%) brightness(40%) contrast(100%);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.roblox-link:hover::after {
+  opacity: 1;
+}
+
+.roblox-logo {
+  height: 36px;
+  display: block;
 }
 
 .discord-link {
@@ -158,11 +234,6 @@ header h1 {
 
 .discord-link:hover {
   transform: scale(1.1);
-}
-
-.discord-logo {
-  height: 36px;
-  display: block;
 }
 
 .discord-link::after {
@@ -185,6 +256,11 @@ header h1 {
   opacity: 1;
 }
 
+.discord-logo {
+  height: 36px;
+  display: block;
+}
+
 .youtube-link {
   display: block;
   position: relative;
@@ -193,11 +269,6 @@ header h1 {
 
 .youtube-link:hover {
   transform: scale(1.1);
-}
-
-.youtube-logo {
-  height: 36px;
-  display: block;
 }
 
 .youtube-link::after {
@@ -218,6 +289,11 @@ header h1 {
 
 .youtube-link:hover::after {
   opacity: 1;
+}
+
+.youtube-logo {
+  height: 36px;
+  display: block;
 }
 
 .game-card.coming-soon .game-link {
