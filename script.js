@@ -136,5 +136,75 @@ document.addEventListener("mousemove", (e) => {
 
 document.addEventListener("contextmenu", (event) => event.preventDefault());
 
-init();
-animate();
+const games = {
+  "game-card-sab": { universeId: 8265450120 },
+  "game-card-sap": { universeId: 8122648570 },
+  "game-card-ps99": { universeId: 8167079083 },
+};
+
+function animateCount(element, end, duration) {
+  const start = parseInt(element.textContent.replace(/,/g, "")) || 0;
+  const range = end - start;
+  let startTime = null;
+
+  function step(currentTime) {
+    if (!startTime) startTime = currentTime;
+    const progress = Math.min((currentTime - startTime) / duration, 1);
+    const currentValue = Math.floor(progress * range + start);
+    element.textContent = currentValue.toLocaleString();
+
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    }
+  }
+
+  requestAnimationFrame(step);
+}
+
+async function fetchGameStats() {
+  const universeIds = Object.values(games)
+    .map((game) => game.universeId)
+    .join(",");
+
+  const apiUrl = `https://games.roproxy.com/v1/games?universeIds=${universeIds}`;
+
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error(`status: ${response.status}`);
+    }
+
+    const { data } = await response.json();
+
+    data.forEach((gameData) => {
+      const gameSelector = Object.keys(games).find(
+        (key) => games[key].universeId === gameData.id
+      );
+
+      if (gameSelector) {
+        const card = document.querySelector(`.${gameSelector}`);
+        if (card) {
+          const playerCount = card.querySelector(
+            ".stat-item:nth-child(1) span"
+          );
+          const visits = card.querySelector(".stat-item:nth-child(2) span");
+          const favorites = card.querySelector(".stat-item:nth-child(3) span");
+
+          animateCount(playerCount, gameData.playing, 1500);
+          animateCount(visits, gameData.visits, 1500);
+          animateCount(favorites, gameData.favoritedCount, 1500);
+        }
+      }
+    });
+  } catch (error) {
+    console.error("Failed to fetch game stats:", error);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  init();
+  animate();
+  fetchGameStats();
+
+  setInterval(fetchGameStats, 60000);
+});
