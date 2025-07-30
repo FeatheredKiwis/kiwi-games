@@ -206,5 +206,5 @@ document.addEventListener("DOMContentLoaded", () => {
   animate();
   fetchGameStats();
 
-  setInterval(fetchGameStats, 60000);
+  setInterval(fetchGameStats, 10000);
 });
