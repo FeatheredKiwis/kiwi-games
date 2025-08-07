@@ -1,6 +1,10 @@
 const canvas = document.getElementById("bgCanvas");
 const ctx = canvas.getContext("2d");
 
+let animationFrameId;
+let effectsIntervalId;
+let statsIntervalId;
+
 let stars = [];
 let shootingStars = [];
 let twinkles = [];
@@ -61,11 +65,6 @@ function createTwinkle() {
   });
 }
 
-setInterval(() => {
-  if (shootingStars.length < 3) createShootingStar();
-  if (twinkles.length < 20) createTwinkle();
-}, 1000);
-
 function animate() {
   ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
@@ -124,7 +123,7 @@ function animate() {
     }
   });
 
-  requestAnimationFrame(animate);
+  animationFrameId = requestAnimationFrame(animate);
 }
 
 window.addEventListener("resize", init);
@@ -201,11 +200,31 @@ async function fetchGameStats() {
   }
 }
 
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    cancelAnimationFrame(animationFrameId);
+    clearInterval(effectsIntervalId);
+    clearInterval(statsIntervalId);
+  } else {
+    animate();
+    effectsIntervalId = setInterval(() => {
+      if (shootingStars.length < 3) createShootingStar();
+      if (twinkles.length < 20) createTwinkle();
+    }, 1000);
+    fetchGameStats();
+    statsIntervalId = setInterval(fetchGameStats, 10000);
+  }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   init();
   animate();
   fetchGameStats();
 
-  setInterval(fetchGameStats, 10000);
-});
+  effectsIntervalId = setInterval(() => {
+    if (shootingStars.length < 3) createShootingStar();
+    if (twinkles.length < 20) createTwinkle();
+  }, 1000);
 
+  statsIntervalId = setInterval(fetchGameStats, 10000);
+});
