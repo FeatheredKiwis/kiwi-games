@@ -229,3 +229,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   statsIntervalId = setInterval(fetchGameStats, 10000);
 });
+
+
