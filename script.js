@@ -136,7 +136,7 @@ document.addEventListener("mousemove", (e) => {
 document.addEventListener("contextmenu", (event) => event.preventDefault());
 
 const games = {
-  "game-card-sab": { universeId: 0 },
+  "game-card-sab": { universeId: 8415681618 },
   "game-card-sap": { universeId: 8122648570 },
   "game-card-ps99": { universeId: 8167079083 },
   "game-card-dr": { universeId: 8373331401 },
